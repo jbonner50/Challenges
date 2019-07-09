@@ -12,7 +12,7 @@ encrypt([1, 2, 3], ['A', 'A', 'A'], "RTFKHDOVZSXTRMVPFC") -> "PROGRAMMINGPUZZLES
 encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXZ") -> "UNCRACKABLE" 
 """
 alpha =          'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-reflection =    'YRUHQSLDPXNGOKMIEBFZCWVJAT'
+reflection =     'YRUHQSLDPXNGOKMIEBFZCWVJAT'
 rotors = {  '1': 'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
             '2': 'AJDKSIRUXBLHWTMCQGZNPYFVOE',
             '3': 'BDFHJLCPRTXVZNYEIWGAKMUSQO',
@@ -71,9 +71,6 @@ def encrypt(rotor_nums, notches, msg):
             rotor2.rotate()
         if rotor1.position == rotor1.notch:
             rotor2.rotate()
-        
-        
-        
         rotor1.rotate()
 
 

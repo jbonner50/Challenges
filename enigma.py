@@ -26,22 +26,22 @@ notches = { 1: 'Q',
             5: 'Z'}
 
 class Rotor():
-
-
-    def __init__(self, rotor_num, notch):
+    
+    def __init__(self, rotor_num, start_pos):
         #find index of start position in base alphabet
-        self.notch = notch
+        
         self.rotor_num = rotor_num
-        i = alpha.index(notch)
+        i = alpha.index(start_pos)
         #set encrypted alphabet for rotor
-        encrypted_alpha = rotors.get(str(rotor_num))
+        self.encrypted_alpha = rotors.get(str(rotor_num))
         #shift based on starting position
-        self.shifted_encrypted_alpha = encrypted_alpha[i:] + encrypted_alpha[:i]
+        self.notch = self.encrypted_alpha[alpha.index(notches[int(rotor_num)])]
+        self.shifted_encrypted_alpha = self.encrypted_alpha[i:] + self.encrypted_alpha[:i]
         self.position = self.shifted_encrypted_alpha[0]
         
 
     def rotate(self):
-        self.shifted_encrypted_alpha = self.shifted_encrypted_alpha[1:] + self.shifted_encrypted_alpha[0]
+        self.shifted_encrypted_alpha = self.shifted_encrypted_alpha[1:] + self.shifted_encrypted_alpha[:1]
         self.position = self.shifted_encrypted_alpha[0]
     
     def sub_char(self, char):
@@ -50,13 +50,20 @@ class Rotor():
     def reverse_sub_char(self, char):
         return alpha[self.shifted_encrypted_alpha.index(char)]
 
-def encrypt(rotor_nums, notches, msg):
+def encrypt(rotor_nums, start_pos, msg):
     encrypted_msg = ''
-    rotor1 = Rotor(rotor_nums[0], notches[0])
-    rotor2 = Rotor(rotor_nums[1], notches[1])
-    rotor3 = Rotor(rotor_nums[2], notches[2])
+    rotor1 = Rotor(rotor_nums[0], start_pos[0])
+    rotor2 = Rotor(rotor_nums[1], start_pos[1])
+    rotor3 = Rotor(rotor_nums[2], start_pos[2])
 
     for char in msg:
+        if rotor1.position == rotor1.notch:
+            rotor2.rotate()
+        elif rotor2.position == rotor2.notch:
+            rotor2.rotate()
+            rotor3.rotate()
+        rotor1.rotate()
+
         c = rotor1.sub_char(char)
         c = rotor2.sub_char(c)
         c = rotor3.sub_char(c)
@@ -65,13 +72,6 @@ def encrypt(rotor_nums, notches, msg):
         c = rotor2.reverse_sub_char(c)
         c = rotor1.reverse_sub_char(c)
         encrypted_msg = encrypted_msg + str(c)
-
-        if rotor2.position == rotor2.notch:
-            rotor3.rotate()
-            rotor2.rotate()
-        if rotor1.position == rotor1.notch:
-            rotor2.rotate()
-        rotor1.rotate()
 
 
     print(encrypted_msg)

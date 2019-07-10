@@ -83,4 +83,5 @@ if __name__ == '__main__':
     encrypt([4, 1, 5], ['H', 'P', 'G'], "AAAAAAAAA") # -> "RPWKMBZLN"
     encrypt([1, 2, 3], ['A', 'A', 'A'], "PROGRAMMINGPUZZLES") # -> "RTFKHDOVZSXTRMVPFC"
     encrypt([1, 2, 3], ['A', 'A', 'A'], "RTFKHDOVZSXTRMVPFC") # -> "PROGRAMMINGPUZZLES"
-    encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXZ") # -> "UNCRACKABLE" 
+    encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXZ") # -> "UNCRACKABLK" 
+    encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXA") # -> "UNCRACKABLE" 

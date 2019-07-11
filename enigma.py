@@ -84,4 +84,5 @@ if __name__ == '__main__':
     encrypt([1, 2, 3], ['A', 'A', 'A'], "PROGRAMMINGPUZZLES") # -> "RTFKHDOVZSXTRMVPFC"
     encrypt([1, 2, 3], ['A', 'A', 'A'], "RTFKHDOVZSXTRMVPFC") # -> "PROGRAMMINGPUZZLES"
     encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXZ") # -> "UNCRACKABLK" 
+    #if you substitute the 'z' for an 'a' at the end, you get an 'e' instead of a 'k'
     encrypt([2, 5, 3], ['U', 'L', 'I'], "GIBDZNJLGXA") # -> "UNCRACKABLE" 
